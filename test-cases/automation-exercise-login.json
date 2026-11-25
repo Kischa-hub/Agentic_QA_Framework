@@ -1,0 +1,68 @@
+[
+  {
+    "id": "LOGIN-01",
+    "title": "Sign in with valid credentials and delete the disposable account",
+    "acceptanceCriteria": [
+      "1",
+      "2",
+      "3"
+    ],
+    "type": "positive",
+    "priority": "high",
+    "preconditions": [
+      "Start signed out on the Automation Exercise home page.",
+      "Provision a disposable account for this run. Set AUTOMATION_EXERCISE_EMAIL and AUTOMATION_EXERCISE_PASSWORD to its valid credentials and record its expected display name."
+    ],
+    "steps": [
+      "Select Signup / Login and verify that Login to your account is visible.",
+      "Enter the email and password from the environment variables listed above, then select Login.",
+      "Verify the header displays Logged in as followed by the expected account display name.",
+      "Select Delete Account for the verified disposable account."
+    ],
+    "expectedResult": "The account deletion confirmation appears.",
+    "status": "approved"
+  },
+  {
+    "id": "LOGIN-02",
+    "title": "Reject an unregistered email and incorrect password",
+    "acceptanceCriteria": [
+      "4",
+      "5"
+    ],
+    "type": "negative",
+    "priority": "high",
+    "preconditions": [
+      "Start signed out on the Automation Exercise home page.",
+      "Use a well-formed, unregistered test email. Set AUTOMATION_EXERCISE_INVALID_PASSWORD to a non-empty incorrect test password."
+    ],
+    "steps": [
+      "Select Signup / Login and verify that Login to your account is visible.",
+      "Enter the unregistered email and the value of AUTOMATION_EXERCISE_INVALID_PASSWORD, then select Login."
+    ],
+    "expectedResult": "The login form stays visible and displays `Your email or password is incorrect!`.",
+    "status": "approved"
+  },
+  {
+    "id": "LOGIN-03",
+    "title": "Log out of a signed-in session",
+    "acceptanceCriteria": [
+      "6",
+      "7",
+      "8"
+    ],
+    "type": "positive",
+    "priority": "high",
+    "preconditions": [
+      "Start signed out on the Automation Exercise home page.",
+      "Use an existing test account that is independent of the account deleted by LOGIN-01. Set AUTOMATION_EXERCISE_LOGOUT_EMAIL and AUTOMATION_EXERCISE_LOGOUT_PASSWORD to its valid credentials and record its expected display name."
+    ],
+    "steps": [
+      "Select Signup / Login and verify that Login to your account is visible.",
+      "Enter the email and password from the environment variables listed above, then select Login.",
+      "Verify the header displays Logged in as followed by the expected account display name.",
+      "Select Logout."
+    ],
+    "expectedResult": "The login page opens and the signed-in account name is absent from the header.",
+    "status": "approved"
+  }
+]
